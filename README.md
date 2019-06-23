@@ -1,7 +1,7 @@
 # Webscraping
 Used BeautifulSoup, MongoDB, Flask, and Chrome Driver to scrape data from NASA JPL and their Twitter feed.
 
-## To run website
+## To run project
 1. Run app.py from terminal.
 2. Navigate to localhost:5000 on browser (Chrome).
 3. Click "Launch" button to initialize webscraping.
