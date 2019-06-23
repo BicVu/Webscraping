@@ -6,6 +6,8 @@ import time
 from pandas import pandas as pd
 import os
 
+# -*- coding: utf-8 -*-
+
 # Start Chrome Driver to navigate through websites
 def init_browser():
     executable_path = {"executable_path": "/usr/local/bin/chromedriver"}
@@ -42,7 +44,7 @@ def scrape_info():
     browser.quit()
     print(mars_data)
 
-    # -----
+    # # -----
     # JPL Mars Space Images - Featured Image
     jpl_home = "https://www.jpl.nasa.gov"
     jpl_url = "https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars"
@@ -76,7 +78,7 @@ def scrape_info():
             # print(f"Feature image url: {feature_img_url}")
 
     except ElementDoesNotExist:
-        print("Scraping Complete")
+        print("Could not find feature image")
         
     # Close the browser after scraping
     browser.quit()
@@ -88,6 +90,7 @@ def scrape_info():
     #-----
     # Mars weather
     mars_twitter = "https://twitter.com/marswxreport?lang=en"
+    # mars_twitter = "https://twitter.com/MarsCuriosity"
 
     # visit browser must remain outside of browser quit or will create endless loop
     browser = init_browser()
@@ -101,17 +104,20 @@ def scrape_info():
             soup = bs(html, "html.parser")
 
             # Collect the latest tweet
-            mars_weather = (soup.find('p', class_ = 'tweet-text').text)
-        
+            # mars_weather = soup.find('p', class_ = 'TweetTextSize TweetTextSize--normal js-tweet-text tweet-text').text
+            mars_weather = soup.find('p', class_ = 'tweet-text').text
+
     except ElementDoesNotExist:
-        print("Scraping Complete")
+        print("Failed to scraped Mars weather Twitter")
         
     # Close the browser after scraping
+    print(mars_weather)
     browser.quit()
 
     # Store data in a dictionary
-    mars_data["mars_weather"] = mars_weather
+    mars_data["mars_weather"] = str(mars_weather)
     print(mars_data)
+
 
     # -----
     # Mars facts table
@@ -171,7 +177,7 @@ def scrape_info():
     browser.quit()
 
     # save urls to main mars_data
-    mars_data["Mars images"] = mars_img
+    mars_data["mars_images"] = mars_img
 
     return mars_data
 
