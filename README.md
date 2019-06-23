@@ -10,6 +10,10 @@ Used BeautifulSoup, MongoDB, Flask, and Chrome Driver to scrape data from NASA J
 
 ## Alternative view of website
 A stagnant site was built to test the HTML and CSS structure of the website.
+
 It can be viewed at [**mission-to-mars.neocities.org**](https://mission-to-mars.neocities.org/)
+
+Preview of the static website can be viewed in the website_screencap folder.
+
 
 
